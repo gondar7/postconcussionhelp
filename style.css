@@ -1,4 +1,4 @@
-/* PostConcussionHelp - Dark Blue Theme Stylesheet v11 (Flexbox Margin Fix) */
+/* PostConcussionHelp - Dark Blue Theme Stylesheet v9 (Footer Spacing) */
 
 /* == Reset and Base Styles == */
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -255,8 +255,6 @@ a.product-item-text-only {
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     text-decoration: none; /* Remove default link underline */
     color: inherit; /* Inherit text color */
-    display: flex; /* Use flexbox for content layout */
-    flex-direction: column; /* Stack content vertically */
 }
 a.product-item-text-only:hover {
     background-color: #4A5568;
@@ -264,49 +262,21 @@ a.product-item-text-only:hover {
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     text-decoration: none;
 }
-
-/* REVISED: Ensure content within the product item stretches and remove conflicting margins */
-.product-item-text-only > h4 {
-     margin-bottom: 0.8rem; /* Spacing below heading */
-}
-.product-item-text-only > p {
-     flex-grow: 1; /* Allow paragraph to take up space */
-     margin-bottom: 1rem; /* Add space between text and link container */
-     /* Padding-bottom removed as margin-bottom is clearer */
-}
-/* REMOVED This conflicting rule */
-/*
-.product-item-text-only > *:not(:last-child) {
-     margin-bottom: 1.2rem;
-}
-*/
-
-.product-item-text-only h4 { font-size: 1.3rem; color: #FFFFFF; display: flex; align-items: center; gap: 1rem; } /* Removed margin-bottom here */
+.product-item-text-only h4 { font-size: 1.3rem; color: #FFFFFF; margin-bottom: 0.7rem; display: flex; align-items: center; gap: 1rem; /* Increased gap */ }
 .product-item-text-only h4 i { color: #63B3ED; font-size: 1.1em; width: 1.3em; text-align: center; flex-shrink: 0;}
-.product-item-text-only p { font-size: 1rem; color: #CBD5E0; line-height: 1.7; } /* Removed bottom margin here */
-
-/* Styles for the simple link container div */
-.product-links-container {
-    margin-top: auto; /* Push to bottom */
-    padding-top: 0.5rem; /* Add some space above */
+.product-item-text-only p { font-size: 1rem; color: #CBD5E0; margin-bottom: 1.2rem; line-height: 1.7; }
+.product-item-text-only span.product-link {
+    display: inline-flex; /* Make it inline-flex to align icon */
+    align-items: center;
+    gap: 0.4rem;
     font-weight: 600;
     font-size: 0.95rem;
-    color: #CBD5E0; /* Base color for descriptive text like "Shop:" */
+    color: #63B3ED;
+    text-decoration: underline; /* Add underline for clarity */
+    margin-top: auto; /* Push to bottom if card height varies */
 }
-.product-links-container a {
-     color: #63B3ED;
-     text-decoration: underline;
-     margin-left: 0.3rem; /* Space after text like "Shop:" */
-     margin-right: 0.3rem; /* Space before pipe */
-}
-.product-links-container a:hover {
-     color: #90CDF4;
-}
-.product-links-container i {
-     font-size: 0.8em;
-     margin-left: 0.2rem; /* Space before icon */
-}
-/* Removed old span.product-link styles */
+.product-item-text-only span.product-link i { font-size: 0.8em; }
+a.product-item-text-only:hover span.product-link { color: #90CDF4; }
 .loading-placeholder { text-align: center; color: #A0AEC0; padding: 3rem; font-style: italic; }
 
 /* Professional Help List */
@@ -378,11 +348,6 @@ a.product-item-text-only:hover {
      /* Reduce padding inside the product boxes on mobile */
      a.product-item-text-only {
         padding: 1.5rem 1rem; /* Adjust top/bottom and left/right padding */
-     }
-     /* Adjust link container padding/font size for mobile if needed */
-     .product-links-container {
-         font-size: 0.9rem;
-         padding-top: 0.3rem;
      }
 
 }
