@@ -1,4 +1,4 @@
-/* PostConcussionHelp - Dark Blue Theme Stylesheet v10 (Link Container Fix) */
+/* PostConcussionHelp - Dark Blue Theme Stylesheet v11 (Flexbox Margin Fix) */
 
 /* == Reset and Base Styles == */
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -264,16 +264,24 @@ a.product-item-text-only:hover {
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     text-decoration: none;
 }
-/* Ensure content within the product item stretches */
-.product-item-text-only > *:not(:last-child) {
-     margin-bottom: 1.2rem; /* Consistent bottom margin for children except last */
+
+/* REVISED: Ensure content within the product item stretches and remove conflicting margins */
+.product-item-text-only > h4 {
+     margin-bottom: 0.8rem; /* Spacing below heading */
 }
 .product-item-text-only > p {
      flex-grow: 1; /* Allow paragraph to take up space */
-     margin-bottom: 1.5rem; /* Ensure space before link container */
+     margin-bottom: 1rem; /* Add space between text and link container */
+     /* Padding-bottom removed as margin-bottom is clearer */
 }
+/* REMOVED This conflicting rule */
+/*
+.product-item-text-only > *:not(:last-child) {
+     margin-bottom: 1.2rem;
+}
+*/
 
-.product-item-text-only h4 { font-size: 1.3rem; color: #FFFFFF; margin-bottom: 0.7rem; display: flex; align-items: center; gap: 1rem; /* Increased gap */ }
+.product-item-text-only h4 { font-size: 1.3rem; color: #FFFFFF; display: flex; align-items: center; gap: 1rem; } /* Removed margin-bottom here */
 .product-item-text-only h4 i { color: #63B3ED; font-size: 1.1em; width: 1.3em; text-align: center; flex-shrink: 0;}
 .product-item-text-only p { font-size: 1rem; color: #CBD5E0; line-height: 1.7; } /* Removed bottom margin here */
 
@@ -298,16 +306,7 @@ a.product-item-text-only:hover {
      font-size: 0.8em;
      margin-left: 0.2rem; /* Space before icon */
 }
-/* Removed old span.product-link styles as they are replaced */
-/*
-.product-item-text-only span.product-link {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    font-weight: 600; font-size: 0.95rem; color: #63B3ED;
-    text-decoration: underline; margin-top: auto;
-}
-.product-item-text-only span.product-link i { font-size: 0.8em; }
-a.product-item-text-only:hover span.product-link { color: #90CDF4; }
-*/
+/* Removed old span.product-link styles */
 .loading-placeholder { text-align: center; color: #A0AEC0; padding: 3rem; font-style: italic; }
 
 /* Professional Help List */
