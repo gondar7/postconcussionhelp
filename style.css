@@ -358,3 +358,114 @@ a.product-item-text-only:hover span.product-link { color: #90CDF4; }
     background-attachment: scroll; /* Disable fixed attachment */
   }
 }
+
+/* == New Product Card Styles (Add to style.css) == */
+
+/* Grid container for the product cards */
+.product-grid-cards {
+    display: grid;
+    /* Adjust minmax for desired card width and responsiveness */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem; /* Space between cards */
+    margin-top: 2rem; /* Space above the grid */
+}
+
+/* Individual product card styling */
+.product-card {
+    background-color: #2D3748; /* Card background */
+    border: 1px solid #4A5568; /* Subtle border */
+    border-radius: 10px; /* Rounded corners */
+    padding: 1.8rem 1.5rem; /* Internal padding */
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    min-height: 220px; /* Optional: Ensure a minimum height */
+}
+
+.product-card:hover {
+    transform: translateY(-4px); /* Slight lift on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Shadow on hover */
+}
+
+/* Card title styling */
+.product-card h4 {
+    font-size: 1.25rem;
+    color: #FFFFFF; /* White title */
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem; /* Space between icon and text */
+}
+
+.product-card h4 i {
+    color: #63B3ED; /* Icon color */
+    font-size: 1.1em;
+    width: 1.3em;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+/* Card description styling */
+.product-card p {
+    font-size: 0.95rem;
+    color: #CBD5E0; /* Lighter text color */
+    line-height: 1.6;
+    margin-bottom: 1.5rem; /* Space below description */
+    flex-grow: 1; /* Allow description to take available space */
+}
+
+.product-card p strong {
+    color: #FBBF24; /* Highlight 'Consult Doctor' */
+    font-weight: 600;
+}
+
+
+/* Container for the link buttons at the bottom */
+.product-links-container {
+    margin-top: auto; /* Push links to the bottom */
+    padding-top: 1rem; /* Space above links */
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap */
+    gap: 0.8rem; /* Space between buttons */
+    justify-content: flex-start; /* Align buttons to the start */
+}
+
+/* Styling for individual link buttons */
+.product-link-button {
+    display: inline-flex; /* Use inline-flex for icon alignment */
+    align-items: center;
+    gap: 0.5rem; /* Space between icon and text in button */
+    background-color: #4A5568; /* Button background */
+    color: #E2E8F0; /* Button text color */
+    padding: 0.6rem 1rem; /* Button padding */
+    border-radius: 6px; /* Rounded corners */
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1px solid #718096; /* Subtle border */
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+    cursor: pointer;
+    text-align: center;
+}
+
+.product-link-button:hover {
+    background-color: #63B3ED; /* Highlight color on hover */
+    color: #1A202C; /* Dark text on hover */
+    border-color: #63B3ED;
+    transform: scale(1.03); /* Slight scale effect */
+    text-decoration: none;
+}
+
+.product-link-button i {
+    font-size: 1em; /* Icon size relative to text */
+    margin-right: 0.1rem; /* Tiny adjustment if needed */
+}
+
+/* Ensure Font Awesome brands are loaded (add script tags to HTML if not already present) */
+/* Example: <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/brands.min.js"></script> */
+
+/* --- Remove old text-link styles if no longer needed --- */
+/* .product-grid-full.text-links-only { display: none; } */
+/* .product-item-text-only { display: none; } */
+/* (Or delete them entirely from style.css) */
+
