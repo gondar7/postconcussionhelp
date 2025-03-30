@@ -1,4 +1,4 @@
-/* PostConcussionHelp - Dark Blue Theme Stylesheet v6 (Parallax Hero) */
+/* PostConcussionHelp - Dark Blue Theme Stylesheet v7 (Clickable Features + Mobile Fix) */
 
 /* == Reset and Base Styles == */
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -130,12 +130,51 @@ h4 { font-size: clamp(1.1rem, 2.5vw, 1.3rem); margin-bottom: 0.8rem; color: #F7F
 /* == Features Section == */
 .dark-features { padding: 5rem 0; }
 .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2.5rem; }
-.feature-item { background-color: #2D3748; padding: 2.5rem 2rem; border-radius: 12px; text-align: center; border: 1px solid #4A5568; transition: transform 0.3s ease, background-color 0.3s ease; display: flex; flex-direction: column; }
-.feature-item:hover { transform: translateY(-6px); background-color: #4A5568; }
+
+/* Make the feature box link behave like a block */
+a.feature-link-card {
+    display: block;
+    text-decoration: none;
+    color: inherit; /* Inherit text color from body */
+    border-radius: 12px; /* Apply border-radius to the link */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Move transition here */
+    outline: none; /* Remove default focus outline if desired */
+}
+
+/* Apply hover effects to the link */
+a.feature-link-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3); /* Optional: enhance shadow on hover */
+    text-decoration: none; /* Ensure no underline on hover */
+}
+a.feature-link-card:hover .feature-item {
+     background-color: #4A5568; /* Keep existing background change on hover */
+}
+
+/* Ensure focus state is visible */
+a.feature-link-card:focus-visible {
+    outline: 3px solid #63B3ED;
+    outline-offset: 3px;
+}
+
+/* Adjusted .feature-item rule */
+.feature-item {
+    background-color: #2D3748;
+    padding: 2.5rem 2rem;
+    border-radius: 12px; /* Keep radius for background clipping */
+    text-align: center;
+    border: 1px solid #4A5568;
+    /* transition: transform 0.3s ease, background-color 0.3s ease; */ /* Transition moved to link */
+    display: flex;
+    flex-direction: column;
+    min-height: 280px; /* Example: Set a min-height for consistency */
+    height: 100%; /* Make sure div fills the link */
+}
+
 .feature-icon { font-size: 2.8rem; color: #63B3ED; margin-bottom: 1.8rem; }
 .feature-item h3 { color: #F7FAFC; margin-bottom: 1rem; font-size: 1.5rem; }
 .feature-item p { font-size: 1rem; margin-bottom: 1.8rem; color: #CBD5E0; flex-grow: 1; }
-.learn-more-link { font-weight: 600; color: #63B3ED; font-size: 1rem; margin-top: auto; } .learn-more-link:hover { color: #90CDF4; }
+/* Removed .learn-more-link class styles */
 
 
 /* == Product Highlight Section (Homepage - Clickable Cards) == */
@@ -162,17 +201,9 @@ a.product-highlight-item.clickable-card:hover { transform: translateY(-5px); box
 .affiliate-disclosure-note { text-align: center; margin-top: 3rem; } .affiliate-disclosure-note small { font-size: 0.9rem; color: #A0AEC0; }
 
 /* == Content Page Specific Styles == */
-/* Remove .page-header styles as it's replaced by .parallax-hero */
-/* .page-header { text-align: center; margin-bottom: 4rem; padding-bottom: 2rem; border-bottom: 1px solid #2D3748; } */
-/* .page-header h1 { color: #FFFFFF; display: inline-flex; align-items: center; gap: 0.8rem; } */
-/* .page-header h1 i { color: #63B3ED; font-size: 0.8em; } */
-
-/* Adjust main content positioning after removing header */
 .content-page { padding-top: 4rem; padding-bottom: 4rem; } /* Increased top padding */
 
 .main-article { max-width: 900px; margin: 0 auto; background-color: #2D3748; padding: clamp(2.5rem, 5vw, 4rem); border-radius: 12px; border: 1px solid #4A5568; }
-/* Remove .article-image style */
-/* .article-image { max-width: 100%; height: auto; margin-bottom: 3rem; border-radius: 10px; background-color: #4A5568; border: 1px solid #718096; display: block; } */
 .main-article section { margin-bottom: 3.5rem; }
 .main-article h2 { border-bottom: 3px solid #63B3ED; padding-bottom: 0.8rem; margin-bottom: 2rem; display: inline-flex; align-items: center; gap: 0.8rem; color: #FFFFFF; font-size: clamp(1.7rem, 4vw, 2.2rem); }
 .main-article h2 i { color: #63B3ED; font-size: 0.9em; }
@@ -210,13 +241,11 @@ a.product-highlight-item.clickable-card:hover { transform: translateY(-5px); box
 #recommended-products { background-color: #1A202C; padding: 3rem; border-radius: 12px; margin-top: 3.5rem; border: 1px solid #2D3748; }
 #recommended-products .section-title { color: #63B3ED; margin-bottom: 1rem; text-align: left; display: flex; align-items: center; gap: 0.8rem; }
 #recommended-products > .section-subtitle { color: #A0AEC0; margin-bottom: 3rem; text-align: left; }
-/* Updated: Product grid styles to match homepage clickable cards where appropriate */
-.product-grid-full.text-links-only { /* Renaming implies old structure, but now using clickable links */
+.product-grid-full.text-links-only {
     display: grid;
     gap: 1.8rem;
     grid-template-columns: 1fr; /* Kept single column for this section */
 }
-/* Using product-item-text-only as the class for the <a> tag now */
 a.product-item-text-only {
     display: block; /* Make link a block */
     background-color: #2D3748;
@@ -236,7 +265,6 @@ a.product-item-text-only:hover {
 .product-item-text-only h4 { font-size: 1.3rem; color: #FFFFFF; margin-bottom: 0.7rem; display: flex; align-items: center; gap: 1rem; /* Increased gap */ }
 .product-item-text-only h4 i { color: #63B3ED; font-size: 1.1em; width: 1.3em; text-align: center; flex-shrink: 0;}
 .product-item-text-only p { font-size: 1rem; color: #CBD5E0; margin-bottom: 1.2rem; line-height: 1.7; }
-/* Updated: Style the span.product-link inside the card link */
 .product-item-text-only span.product-link {
     display: inline-flex; /* Make it inline-flex to align icon */
     align-items: center;
@@ -306,6 +334,16 @@ a.product-item-text-only:hover span.product-link { color: #90CDF4; }
      .product-highlight-grid.clickable { gap: 1.5rem; }
      .parallax-hero { min-height: 35vh; } /* Adjust hero height on mobile */
      .content-page { padding-top: 3rem; } /* Adjust top padding on mobile */
+
+     /* Mobile centering fix for recommended products */
+     #recommended-products {
+        padding: 1.5rem 1rem; /* Reduce horizontal padding on mobile */
+     }
+     /* Optional: Ensure the grid itself has no weird margins */
+     .product-grid-full.text-links-only {
+         margin-left: 0;
+         margin-right: 0;
+     }
 }
 
 /* Reduce motion preference for parallax */
