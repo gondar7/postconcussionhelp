@@ -1,4 +1,4 @@
-/* PostConcussionHelp - Dark Blue Theme Stylesheet v8 (Final Mobile Fix) */
+/* PostConcussionHelp - Dark Blue Theme Stylesheet v9 (Footer Spacing) */
 
 /* == Reset and Base Styles == */
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -295,6 +295,10 @@ a.product-item-text-only:hover span.product-link { color: #90CDF4; }
 .logo-footer { display: flex; align-items: center; gap: 0.5rem; color: #FFFFFF; font-size: 1.4rem; margin-bottom: 1rem; }
 .logo-footer i { color: #63B3ED;}
 .footer-col p { font-size: 0.95rem; line-height: 1.6; }
+/* Add margin below the description paragraph in the footer */
+.footer-description {
+    margin-bottom: 1rem; /* Adjust spacing as needed */
+}
 .footer-col ul { list-style: none; padding: 0; } .footer-col li { margin-bottom: 0.7rem; padding-left: 0;} /* Remove list padding */
 .footer-col li::before { content: '';} /* Remove potential list bullets */
 .footer-col a { color: #A0AEC0; font-size: 0.95rem;} .footer-col a:hover { color: #FFFFFF; }
@@ -323,11 +327,9 @@ a.product-item-text-only:hover span.product-link { color: #90CDF4; }
      .container { padding: 0 15px;}
      .main-article { padding: 2rem 1.5rem;}
      .info-grid, .strategy-columns, .support-columns, .professional-help-list { grid-template-columns: 1fr; gap: 1.5rem; }
-     /* REMOVED a.product-item-text-only { padding: 1.5rem;} because it's handled below */
      .footer-content { grid-template-columns: 1fr; text-align: center; gap: 2rem;}
      .footer-col ul { padding-left: 0; display: inline-block; }
      .main-header .container { flex-wrap: nowrap; }
-     /* Remove centering for section title as it's handled by hero */
      /* .page-header h1, .section-title { text-align: center; display: block;} */
      .main-article h2 { display: flex; }
      .product-highlight-grid.clickable { gap: 1.5rem; }
