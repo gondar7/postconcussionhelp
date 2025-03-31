@@ -1,4 +1,4 @@
-// PostConcussionHelp - JS Enhancements v5 (Final Fixes)
+// PostConcussionHelp - JS Enhancements v6 (Footer Active Link)
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if ('IntersectionObserver' in window) {
         const observer = new IntersectionObserver(observerCallback, observerOptions);
         const elementsToFadeIn = document.querySelectorAll(
-            '.intro-section, .feature-item, .product-highlight-item, .main-article section, .info-card, .product-item-text-only, blockquote, .page-header p, .support-columns > div, .professional-help-list li, .footer-col'
+            '.intro-section, .feature-item, .product-highlight-item, .main-article section, .info-card, .product-item-text-only, blockquote, .page-header p, .support-columns > div, .professional-help-list li, .footer-col, .product-card' // Added .product-card
             );
 
         elementsToFadeIn.forEach(el => {
@@ -113,5 +113,17 @@ document.addEventListener('DOMContentLoaded', () => {
             lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
         }, { passive: true });
     }
+
+    // --- Footer Active Link Highlight ---
+    const currentPath = window.location.pathname.split('/').pop(); // Get the current HTML file name
+    const footerLinks = document.querySelectorAll('.footer-col ul li a');
+
+    footerLinks.forEach(link => {
+        const linkPath = link.getAttribute('href').split('/').pop();
+        if (linkPath === currentPath || (currentPath === '' && linkPath === 'index.html')) { // Handle index page case
+            link.classList.add('active');
+        }
+    });
+
 
 }); // End DOMContentLoaded
