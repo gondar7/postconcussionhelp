@@ -1,4 +1,4 @@
-// PostConcussionHelp - JS Enhancements v6 (Footer Active Link)
+// PostConcussionHelp - JS Enhancements v8 (Affiliate Links Open New Tab)
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -123,6 +123,108 @@ document.addEventListener('DOMContentLoaded', () => {
         if (linkPath === currentPath || (currentPath === '' && linkPath === 'index.html')) { // Handle index page case
             link.classList.add('active');
         }
+    });
+
+    // --- GA4 Affiliate Link Click Tracking ---
+    // Select links that contain 'amzn.to' (Amazon affiliate links)
+    const affiliateLinks = document.querySelectorAll('a[href*="amzn.to"]');
+
+    affiliateLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent immediate navigation
+
+            let productName = 'Unknown Product'; // Default product name
+            const linkUrl = link.href;
+
+            // Try to find product name based on surrounding elements
+            const productCard = link.closest('.product-card');
+            const productHighlightItem = link.closest('.product-highlight-item');
+            const infoCard = link.closest('.info-card');
+            const iconListItem = link.closest('.icon-list li'); // Check if link is directly in an icon-list item
+
+            if (productCard) {
+                // Found in a .product-card (recovery-strategies.html - Recommended Tools)
+                const heading = productCard.querySelector('h4');
+                if (heading) {
+                     // Remove the icon text if present
+                     const iconElement = heading.querySelector('i');
+                     productName = iconElement ? heading.textContent.replace(iconElement.textContent, '').trim() : heading.textContent.trim();
+                }
+            } else if (productHighlightItem) {
+                // Found in a .product-highlight-item (index.html - Product Highlight)
+                const heading = productHighlightItem.querySelector('h4');
+                 if (heading) {
+                     // Remove the icon text if present
+                     const iconElement = heading.querySelector('i');
+                     productName = iconElement ? heading.textContent.replace(iconElement.textContent, '').trim() : heading.textContent.trim();
+                 }
+            } else if (infoCard) {
+                 // Found in an .info-card (recovery-strategies.html, symptoms-challenges.html)
+                 // Often multiple links here, try link text first
+                 productName = link.textContent.trim();
+                 // If link text is generic (like 'Style 1'/'Style 2'), try the card heading
+                 if (productName.toLowerCase().startsWith('style') || productName === '') {
+                     const heading = infoCard.querySelector('h4');
+                      if (heading) {
+                          const iconElement = heading.querySelector('i');
+                          productName = iconElement ? heading.textContent.replace(iconElement.textContent, '').trim() : heading.textContent.trim();
+                          // Append specific style if available from link text
+                          if (link.textContent.trim().toLowerCase().startsWith('style')) {
+                            productName += ` (${link.textContent.trim()})`;
+                          }
+                      }
+                 }
+            } else if (iconListItem) {
+                 // Found in an .icon-list item (e.g., symptoms-challenges.html)
+                 productName = link.textContent.trim();
+                 // If link text is generic, try finding preceding strong text
+                 if (productName === 'Eye Mask' || productName === 'Journal/Planner') {
+                    // Keep as is, these are specific enough
+                 } else {
+                    // Fallback if needed, but link text is often best here
+                 }
+            } else {
+                 // Fallback: Use link text if not empty
+                 if (link.textContent.trim()) {
+                     productName = link.textContent.trim();
+                 }
+            }
+
+             // Clean up product name slightly (e.g., remove extra spaces)
+             productName = productName.replace(/\s+/g, ' ').trim();
+
+
+            // Send event to Google Analytics (GA4)
+            if (typeof gtag === 'function') {
+                gtag('event', 'select_content', {
+                    'content_type': 'affiliate_link',
+                    'item_id': productName, // Use item_id for the product name/identifier
+                    'event_callback': function() {
+                        // Callback ensures event is sent before navigating
+                        // ** CHANGED TO OPEN IN NEW TAB **
+                        window.open(linkUrl, '_blank');
+                    }
+                });
+
+                 // Fallback timeout in case callback doesn't fire (e.g., due to ad blockers)
+                 setTimeout(function() {
+                     // ** CHANGED TO OPEN IN NEW TAB **
+                     // Check if the window was already opened by the callback
+                     // This is a simple check; more robust checks might involve tracking window handles
+                     if (!window.opened) { // Basic check; might need refinement
+                         window.open(linkUrl, '_blank');
+                         window.opened = true; // Simple flag
+                         setTimeout(() => { window.opened = false; }, 100); // Reset flag
+                     }
+                 }, 500); // Wait 500ms
+
+            } else {
+                console.log("gtag function not defined. Skipping GA event.");
+                // If gtag isn't available, navigate immediately in a new tab
+                // ** CHANGED TO OPEN IN NEW TAB **
+                window.open(linkUrl, '_blank');
+            }
+        });
     });
 
 
