@@ -232,8 +232,9 @@ a.product-highlight-item.clickable-card:hover { transform: translateY(-5px); box
 .footer-col h4 { color: #FFFFFF; margin-bottom: 1.2rem; font-size: 1.2rem; font-weight: 600; }
 .logo-footer { display: flex; align-items: center; gap: 0.5rem; color: #FFFFFF; font-size: 1.4rem; margin-bottom: 1rem; }
 .logo-footer i { color: #63B3ED;}
-.footer-col p { font-size: 0.95rem; line-height: 1.6; }
-.footer-description { margin-bottom: 1rem; }
+.footer-col p { font-size: 0.95rem; line-height: 1.6; margin-bottom: 0; /* Removed default p margin */ }
+.footer-col p + p { margin-top: 1rem; /* Add space only between paragraphs */ }
+.footer-description { margin-bottom: 1rem !important; /* Keep space after description */ }
 .footer-col ul { list-style: none; padding: 0; } .footer-col li { margin-bottom: 0.7rem; padding-left: 0;}
 .footer-col li::before { content: '';}
 .footer-col a { color: #A0AEC0; font-size: 0.95rem;}
@@ -243,6 +244,34 @@ a.product-highlight-item.clickable-card:hover { transform: translateY(-5px); box
 }
 .footer-col small { font-size: 0.85rem; line-height: 1.6; color: #718096; display: block; margin-top: 0.8rem; }
 .copyright { text-align: center; padding: 2rem 0; } .copyright p { font-size: 0.9rem; color: #718096; }
+
+/* Donate Button Style */
+.donate-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    background-color: #0070ba; /* PayPal blue */
+    color: #ffffff;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+.donate-button:hover {
+    background-color: #005ea6; /* Darker PayPal blue */
+    color: #ffffff;
+    text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.donate-button i {
+    font-size: 1.1em;
+}
+
 
 /* == Fade-in Animation Class == */
 .fade-in-element { opacity: 0; transform: translateY(25px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
@@ -311,6 +340,10 @@ a.product-highlight-item.clickable-card:hover { transform: translateY(-5px); box
     .features-grid {
         grid-template-columns: 1fr;
     }
+     /* Center footer column content */
+    .footer-col { text-align: center; }
+    .footer-col p { text-align: center; }
+    .logo-footer { justify-content: center; } /* Center logo items */
 }
 
 /* Reduce motion preference for parallax */
